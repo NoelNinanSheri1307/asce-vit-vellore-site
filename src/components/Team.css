@@ -1,0 +1,60 @@
+.team-section {
+  padding: 100px 20px;
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 180px;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00bfff;
+  transition: transform 0.3s ease;
+}
+
+.team-member img:hover {
+  transform: scale(1.05);
+}
+
+.team-member h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #00bfff;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.past-teams-link {
+  display: inline-block;
+  margin-top: 40px;
+  font-weight: bold;
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.past-teams-link:hover {
+  text-decoration: underline;
+}

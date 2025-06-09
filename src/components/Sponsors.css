@@ -1,0 +1,41 @@
+/* Sponsors.css */
+
+.sponsors-section {
+  padding: 100px 20px;
+  background-color: #181818;
+  color: white;
+  text-align: center;
+}
+
+.sponsors-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.sponsor-logos img {
+  max-height: 80px;
+  transition: transform 0.3s ease;
+  filter: brightness(90%);
+}
+
+.sponsor-logos img:hover {
+  transform: scale(1.05);
+  filter: brightness(110%);
+}
+
+.sponsors-section h3 {
+  color: #00bfff;
+  margin-top: 2rem;
+}
+
+.sponsor-logos.past img {
+  opacity: 0.6;
+}

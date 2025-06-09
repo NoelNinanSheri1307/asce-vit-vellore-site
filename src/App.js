@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import InternalEvents from "./components/InternalEvents";
+import ExternalEvents from "./components/ExternalEvents";
+import Winners from "./components/Winners";
+import Achievements from "./components/Achievements";
+import Sponsors from "./components/Sponsors";
+import AboutUs from "./components/AboutUs";
+import Patron from "./components/Patron";
+import Team from "./components/Team";
+import Register from "./components/Register";
+import Gallery from "./components/Gallery";
+import Archive from "./components/Archive";
+import Contact from "./components/Contact";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Home />
+      <InternalEvents />
+      <ExternalEvents />
+      <Winners />
+      <Achievements />
+      <Sponsors />
+      <AboutUs />
+      <Patron />
+      <Team />
+      <Register />
+      <Gallery />
+      <Archive />
+      <Contact />
+    </>
   );
 }
 

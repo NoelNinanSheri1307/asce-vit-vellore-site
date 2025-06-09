@@ -1,0 +1,40 @@
+.archive-section {
+  padding: 100px 20px;
+  background-color: #0e0e0e;
+  color: white;
+  text-align: center;
+}
+
+.archive-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.archive-box {
+  background-color: #1a1a1a;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+  text-align: left;
+}
+
+.archive-box h3 {
+  color: #00bfff;
+  margin-bottom: 10px;
+}
+
+.archive-box ul {
+  padding-left: 20px;
+}
+
+.archive-box li {
+  margin-bottom: 5px;
+}
