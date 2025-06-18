@@ -7,7 +7,7 @@ const archiveData = [
   {
     year: "2023–24",
     events: ["Civil Quiz Fest", "Bridge Design Contest"],
-    team: "Team Led by Arpit & Noel",
+    team: "Team Led by Ryan and John",
     highlights: ["2nd Place - TechExpo", "Paper Published in CivilScope"],
   },
   {
@@ -22,7 +22,7 @@ const Archive = () => {
   return (
     <motion.section
       id="archive"
-      className="archive-section"
+      className="archive-section common-section"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

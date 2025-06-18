@@ -1,6 +1,5 @@
 .about-section {
   padding: 100px 20px;
-  background-color: #141414;
   color: white;
   text-align: center;
 }
@@ -16,4 +15,54 @@
   font-size: 1.1rem;
   line-height: 1.7;
   text-align: justify;
+}
+.splash-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border: 2px solid #00bfff;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-decoration: none;
+  transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.splash-button::before {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 250%;
+  height: 250%;
+  background: linear-gradient(135deg, #87ceeb 0%, #00bfff 100%);
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  z-index: 0;
+}
+
+.splash-button:hover::before {
+  transform: translate(100%, 100%) rotate(25deg);
+  opacity: 1;
+}
+
+.splash-button:hover {
+  background-color: white;
+  color: black;
+  border-color: #004080;
+}
+
+.splash-button {
+  position: relative;
+  z-index: 1;
+}
+.splash-button::before {
+  z-index: 0;
 }

@@ -1,34 +1,57 @@
-// Sponsors.jsx
-import { motion } from "framer-motion";
+import React from "react";
 import "./Sponsors.css";
 
+const sponsors = [
+  {
+    name: "L&T",
+    logo: require("../imagesandassets/lt.jpg"),
+    link: "https://www.larsentoubro.com/",
+  },
+  {
+    name: "Ultratech Cement",
+    logo: require("../imagesandassets/ultratech.png"),
+    link: "https://www.ultratechcement.com/",
+  },
+  {
+    name: "Godrej",
+    logo: require("../imagesandassets/godrej.png"),
+    link: "https://www.godrej.com/",
+  },
+  {
+    name: "JSW Cement",
+    logo: require("../imagesandassets/jsw.jpg"),
+    link: "https://www.jswcement.in/",
+  },
+];
+
 const Sponsors = () => {
+  const scrollingSponsors = [...sponsors, ...sponsors];
+
   return (
-    <motion.section
-      id="sponsors"
-      className="sponsors-section"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
+    <section className="sponsors-section">
       <h2>Our Sponsors</h2>
-
-      <div className="sponsor-logos">
-        <a href="https://www.ultratechcement.com" target="_blank">
-          <img src="/imagesandassets/ultratech-logo.png" alt="UltraTech" />
+      <div className="slider-box">
+        <div className="slider-fade left-fade" />
+        <div className="slider-fade right-fade" />
+        <div className="sponsor-slider">
+          {scrollingSponsors.map((sponsor, index) => (
+          <a
+          key={index}
+          href={sponsor.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sponsor-logo"
+        >
+          <div className="logo-container">
+            <img src={sponsor.logo} alt={sponsor.name} />
+            <p className="sponsor-name">{sponsor.name}</p>
+          </div>
         </a>
-        <a href="https://www.lntconstruction.com" target="_blank">
-          <img src="/imagesandassets/lnt-logo.png" alt="L&T Construction" />
-        </a>
-      </div>
 
-      <h3>Past Sponsors</h3>
-      <div className="sponsor-logos past">
-        <img src="/imagesandassets/acme-logo.png" alt="Acme Corp" />
-        <img src="/imagesandassets/buildpro-logo.png" alt="BuildPro" />
+          ))}
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

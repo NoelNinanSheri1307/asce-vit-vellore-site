@@ -15,15 +15,17 @@ import Register from "./components/Register";
 import Gallery from "./components/Gallery";
 import Archive from "./components/Archive";
 import Contact from "./components/Contact";
+import ChainBackground from "./components/ChainBackground";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <Navbar />
       <Home />
+      <div className="with-background">
+        <ChainBackground particleId="tsparticles-global" />
       <InternalEvents />
       <ExternalEvents />
-      <Winners />
       <Achievements />
       <Sponsors />
       <AboutUs />
@@ -33,7 +35,8 @@ function App() {
       <Gallery />
       <Archive />
       <Contact />
-    </>
+      </div>
+    </div>
   );
 }
 

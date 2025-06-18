@@ -5,7 +5,7 @@ const Winners = () => {
   return (
     <motion.section
       id="winners"
-      className="winners-section"
+      className="winners-section common-section"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
