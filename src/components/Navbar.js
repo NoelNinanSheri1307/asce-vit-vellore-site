@@ -43,7 +43,7 @@
           <a href="#achievements">Achievements</a>
           <a href="#sponsors">Sponsors</a>
           <a href="#about">About</a>
-          <a href="#patron">Patron</a>
+          <a href="#patron">Faculty</a>
           <a href="#team">Team</a>
           <a href="#register">Register</a>
           <a href="#gallery">Gallery</a>

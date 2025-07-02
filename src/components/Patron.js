@@ -24,7 +24,7 @@ const Patron = () => {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2>Our Patron</h2>
+      <h2>Faculty In-Charge</h2>
 
       <div className="patron-content">
         <div

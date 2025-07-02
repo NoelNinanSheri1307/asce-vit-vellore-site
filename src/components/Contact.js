@@ -16,7 +16,7 @@ const Contact = () => {
       <h2>Contact Us</h2>
 
       <div className="contact-info">
-        <p><strong>Email:</strong> asce.vitchapter@gmail.com</p>
+        <p><strong>Email:</strong> asce@vit.ac.in</p>
         <p><strong>Phone:</strong> +91 98765 43210</p>
         <p>
           <strong>Socials:</strong> 

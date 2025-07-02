@@ -24,17 +24,6 @@ const Register = () => {
             <button type="submit">Join Now</button>
           </form>
         </div>
-
-        {/* Event Registration Form */}
-        <div className="form-box">
-          <h3>Event Registration</h3>
-          <form>
-            <input type="text" placeholder="Full Name" required />
-            <input type="email" placeholder="Email" required />
-            <input type="text" placeholder="Event Name" required />
-            <button type="submit">Register</button>
-          </form>
-        </div>
       </div>
     </motion.section>
   );

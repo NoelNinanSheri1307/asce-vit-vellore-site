@@ -10,6 +10,17 @@ const achievements = [
     summary:
       "Multiple awards including runner-up and third-place positions across Poster Making, Design Challenges, and Quizzes.",
     image: symposiumImg,
+    description: (
+      <>
+      The ASCE India Student Symposium 2025, hosted at the Mukesh Patel School of Technology Management
+       & Engineering on March 28–29, 2025, brought together civil engineering students from across India 
+       to compete, collaborate, and innovate. This premier event offered a platform for ASCE student 
+       members to showcase their technical skills, engage in hands-on competitions, and network with 
+       industry leaders and peers. With a focus on real-world challenges, the symposium fostered 
+       creativity, teamwork, and professional growth—all while providing free access to ASCE’s vast 
+       resources. 
+      </>
+    ),
     details: (
       <>
         <h4>🏅 Runner-up – Technical Poster Making</h4>
@@ -60,6 +71,8 @@ const achievements = [
     title: "IIT Bombay – Aakar 2025",
     summary: "1st Prize in the Open Roads Designer Competition by a dynamic VIT team.",
     image: aakarImg,
+    description:
+    "The ASCE VIT Student Chapter excelled at the OpenRoads Designer Competition, showcasing their innovative civil engineering solutions. Competing against top teams, the VIT representatives demonstrated mastery in infrastructure design using Bentley’s cutting-edge software, highlighting their technical prowess and collaborative spirit. The victory here, underscores the chapter’s commitment to pushing boundaries in civil engineering",
     details: (
       <>
         <h4>🥇 1st Prize – Open Roads Designer</h4>
@@ -119,6 +132,7 @@ const Achievements = () => {
               ×
             </button>
             <h2>{selected.title}</h2>
+            <h4>{selected.description}</h4>
             <div className="modal-body">{selected.details}</div>
           </div>
         </div>
