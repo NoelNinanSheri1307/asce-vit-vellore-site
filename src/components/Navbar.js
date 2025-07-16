@@ -38,16 +38,11 @@
 
         <div className="navbar-links">
           <a href="#home">Home</a>
-          <a href="#events-internal">Internal</a>
-          <a href="#events-external">External</a>
           <a href="#achievements">Achievements</a>
-          <a href="#sponsors">Sponsors</a>
-          <a href="#about">About</a>
           <a href="#patron">Faculty</a>
           <a href="#team">Team</a>
           <a href="#register">Register</a>
           <a href="#gallery">Gallery</a>
-          <a href="#archive">Archive</a>
           <a href="#contact">Contact</a>
           <img
             src={engineerIcon}

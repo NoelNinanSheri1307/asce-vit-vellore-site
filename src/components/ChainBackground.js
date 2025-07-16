@@ -15,7 +15,7 @@ const ChainBackground = ({ particleId = "tsparticles" }) => {
         fullScreen: { enable: false },
         background: { color: "transparent" },
           particles: {
-          number: { value: 200 },
+          number: { value: 80 },
           color: { value: "#00bfff" },
           links: {
             enable: true,

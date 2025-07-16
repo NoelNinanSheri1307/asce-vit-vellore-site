@@ -112,3 +112,40 @@
 .event-description li {
   margin-bottom: 5px;
 }
+.event-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-modal-content {
+  background: #111;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: left;
+  position: relative;
+  border: 2px solid #00bfff;
+}
+
+.close-button {
+  margin-top: 20px;
+  background-color: #00bfff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+}

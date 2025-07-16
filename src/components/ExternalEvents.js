@@ -1,34 +1,36 @@
-import React from "react";
-import { motion, reverseEasing } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./ExternalEvents.css";
 
 const externalEvents = [
   {
     title: "ASCE India Student Symposium 2025",
-    date: "March 28-29 2025",
+    date: "March 28-29, 2025",
     image: require("../imagesandassets/symposium.jpg"),
     description: (
       <>
-      The ASCE India Student Symposium 2025, hosted at the Mukesh Patel School of Technology Management
-       & Engineering on March 28–29, 2025, brought together civil engineering students from across India 
-       to compete, collaborate, and innovate. This premier event offered a platform for ASCE student 
-       members to showcase their technical skills, engage in hands-on competitions, and network with 
-       industry leaders and peers. With a focus on real-world challenges, the symposium fostered 
-       creativity, teamwork, and professional growth—all while providing free access to ASCE’s vast 
-       resources. 
+        The ASCE India Student Symposium 2025, hosted at the Mukesh Patel School of Technology Management
+        & Engineering on March 28–29, 2025, brought together civil engineering students from across India 
+        to compete, collaborate, and innovate. This premier event offered a platform for ASCE student 
+        members to showcase their technical skills, engage in hands-on competitions, and network with 
+        industry leaders and peers. With a focus on real-world challenges, the symposium fostered 
+        creativity, teamwork, and professional growth—all while providing free access to ASCE’s vast 
+        resources. 
       </>
-    )
+    ),
   },
   {
     title: "Open Roads Designer Competition - Aakaar 2025, IIT Bombay",
-    date: "March 22 2025",
+    date: "March 22 , 2025",
     image: require("../imagesandassets/aakar.jpg"),
     description:
-    "The ASCE VIT Student Chapter excelled at the OpenRoads Designer Competition, showcasing their innovative civil engineering solutions. Competing against top teams, the VIT representatives demonstrated mastery in infrastructure design using Bentley’s cutting-edge software, highlighting their technical prowess and collaborative spirit. The victory here, underscores the chapter’s commitment to pushing boundaries in civil engineering"
-  }
+      "The ASCE VIT Student Chapter excelled at the OpenRoads Designer Competition, showcasing their innovative civil engineering solutions. Competing against top teams, the VIT representatives demonstrated mastery in infrastructure design using Bentley’s cutting-edge software, highlighting their technical prowess and collaborative spirit.",
+  },
 ];
 
 const ExternalEvents = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   return (
     <motion.section
       id="events-external"
@@ -41,14 +43,29 @@ const ExternalEvents = () => {
       <h2>External Events</h2>
       <div className="external-event-scroll-container">
         {externalEvents.map((event, index) => (
-          <div className="event-card shimmer-border" key={index}>
+          <div
+            className="event-card shimmer-border"
+            key={index}
+            onClick={() => setSelectedEvent(event)}
+          >
             <img src={event.image} alt={event.title} className="event-image" />
             <h3>{event.title}</h3>
             <p className="event-date">{event.date}</p>
-            <div className="event-description">{event.description}</div>
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {selectedEvent && (
+        <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
+          <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>{selectedEvent.title}</h3>
+            <p className="event-date">{selectedEvent.date}</p>
+            <div className="event-description">{selectedEvent.description}</div>
+            <button onClick={() => setSelectedEvent(null)} className="close-button">Close</button>
+          </div>
+        </div>
+      )}
     </motion.section>
   );
 };

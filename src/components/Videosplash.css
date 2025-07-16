@@ -1,0 +1,26 @@
+.video-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideUpFadeOut 7s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.video-splash.slide-out {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.video-splash video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
