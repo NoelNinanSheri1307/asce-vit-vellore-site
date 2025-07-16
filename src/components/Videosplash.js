@@ -7,19 +7,14 @@ const VideoSplashScreen = ({ onFinish }) => {
   const [slideOut, setSlideOut] = useState(false);
 
   useEffect(() => {
-    const handleVideoEnd = () => {
-      setSlideOut(true); // Trigger slide-up animation
+    const video = videoRef.current;
 
-      // Wait for the animation to finish, then call onFinish
-      setTimeout(() => {
-        onFinish();
-      }, 1000); // matches the CSS transition duration
+    const handleVideoEnd = () => {
+      setSlideOut(true); // Add class that triggers slide/fade animation
     };
 
-    const video = videoRef.current;
     if (video) {
       video.addEventListener("ended", handleVideoEnd);
-      video.play();
     }
 
     return () => {
@@ -27,11 +22,21 @@ const VideoSplashScreen = ({ onFinish }) => {
         video.removeEventListener("ended", handleVideoEnd);
       }
     };
-  }, [onFinish]);
+  }, []);
 
   return (
-    <div className={`video-splash ${slideOut ? "slide-out" : ""}`}>
-      <video ref={videoRef} src={landingVideo} type="video/mp4" muted autoPlay />
+    <div
+      className={`video-splash ${slideOut ? "slide-out" : ""}`}
+      onTransitionEnd={slideOut ? onFinish : null}
+    >
+      <video
+        ref={videoRef}
+        src={landingVideo}
+        type="video/mp4"
+        muted
+        autoPlay
+        playsInline
+      />
     </div>
   );
 };

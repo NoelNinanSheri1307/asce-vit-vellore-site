@@ -9,8 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: slideUpFadeOut 7s ease-in-out forwards;
   pointer-events: none;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
 
 .video-splash.slide-out {
@@ -22,5 +22,5 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
 }
-
