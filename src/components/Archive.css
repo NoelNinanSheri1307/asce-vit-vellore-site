@@ -1,4 +1,4 @@
-.archive-section {
+/* .archive-section {
   padding: 100px 20px;
   color: white;
   text-align: center;
@@ -36,4 +36,260 @@
 
 .archive-box li {
   margin-bottom: 5px;
+} 
+
+Arpit's CSS:    */
+
+/* Section wrapper */
+.archive-section-component {
+  position: relative;
+  padding: 100px 20px;
+  color: white;
+  text-align: center;
+  background-color: transparent;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Section header */
+.archive-section-component .archive-header {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #feffff;
+}
+
+/* Year container */
+.archive-list-component {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Each year’s box */
+.archive-box-component {
+  /* background-color: #333333; */
+  padding: 25px;
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px rgba(0, 191, 255, 0.2); */
+  text-align: left;
+}
+
+/* Year title */
+.archive-box-title {
+  color: #00bfff;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  border-bottom: 1px solid #333333;
+  padding-bottom: 10px;
+}
+
+/* Leadership block */
+.archive-leadership {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333333;
+}
+
+.archive-leadership p {
+  margin: 5px 0;
+  color: white;
+}
+
+.archive-department {
+  font-style: italic;
+  color: white;
+}
+
+.archive-highlight-text {
+  color: #00bfff;
+}
+
+/* EVENTS GRID */
+.archive-events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  width: 95%;
+  margin: 0 auto;
+}
+
+
+/* Card container */
+.archive-event-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background-color: rgba(10, 10, 10, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  max-height: 210px; /* only image (150px) + title (≈60px) */
+  transition: max-height 0.6s ease-in-out, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover shimmer border */
+.archive-event-card:hover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(0,191,255,0.3) 50%, transparent 100%);
+  pointer-events: none;
+  animation: shimmer 1.5s forwards;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  from { left: -100%; }
+  to   { left: 100%; }
+}
+
+.archive-event-card:hover {
+  border-color: #00bfff;
+}
+
+/* Image at top */
+.archive-event-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain; /* Changed from cover to contain */
+  background-color: #000;
+  display: block;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Title overlay / below image */
+.archive-event-title {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin: 10px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* Hidden details */
+.archive-event-meta,
+.archive-event-description,
+.archive-highlights,
+.archive-blockquote {
+  opacity: 0;
+  transform: translateY(-10px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease, max-height 0.6s ease;
+  padding: 0 15px;
+}
+
+/* Expanded state */
+.archive-event-card:hover,
+.archive-event-card.archive-expanded {
+  max-height: 1000px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Reveal details when expanded */
+.archive-event-card.archive-expanded .archive-event-meta,
+.archive-event-card.archive-expanded .archive-event-description,
+.archive-event-card.archive-expanded .archive-highlights,
+.archive-event-card.archive-expanded .archive-blockquote {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 1000px;
+  margin-top: 0.5em;
+}
+
+/* Meta styling */
+.archive-event-meta p {
+  margin: 5px 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Description */
+.archive-event-description {
+  color: #eee;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+
+/* Quote */
+.archive-blockquote {
+  color: #aaa;
+  margin: 10px 0;
+  padding-left: 10px;
+  border-left: 4px solid #00bfff;
+  font-style: italic;
+}
+
+/* Highlights list */
+.archive-highlights {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #444;
+}
+
+.archive-highlight-title {
+  font-weight: bold;
+  color: #00bfff;
+  margin-bottom: 5px;
+}
+
+.archive-bullet {
+  margin-right: 5px;
+  color: #00bfff;
+}
+
+.archive-highlights ul {
+  padding-left: 20px;
+}
+h4 {
+  text-align: center;
+}
+
+.archive-event-card:hover .archive-event-meta,
+.archive-event-card:hover .archive-event-description,
+.archive-event-card:hover .archive-highlights,
+.archive-event-card:hover .archive-blockquote {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 1000px;
+  margin-top: 0.5em;
+}
+
+/* Disable shimmer when expanded */
+.archive-event-card.archive-expanded:hover::before {
+  content: none;
+}
+
+/* Keep expanded state visually distinct */
+.archive-event-card.archive-expanded:hover {
+  border-color: #00bfff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.archive-highlights ul {
+  list-style: none; /* This removes the default bullets */
+  padding-left: 0; /* Removes default padding */
+}
+
+/* Style for custom bullets */
+.archive-highlights li {
+  position: relative;
+  padding-left: 1em; /* Space for custom bullet */
+  margin-bottom: 0.5em;
+}
+
+.archive-highlights li::before {
+  content: "•";
+  color: #00bfff;
+  position: absolute;
+  left: 0;
 }

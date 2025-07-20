@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 *
 {
-  font-family:Footlight MT Light;
+  font-family:'Footlight MT Light';
   scroll-behavior: smooth;
 }
 body {
@@ -9,7 +9,6 @@ body {
   padding: 0;
   background-color: #000;
   color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
 }
 

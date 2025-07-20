@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import {useState} from "react";
+import { Routes, Route } from "react-router-dom"; 
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import InternalEvents from "./components/InternalEvents";
@@ -16,31 +17,41 @@ import Archive from "./components/Archive";
 import Contact from "./components/Contact";
 import ChainBackground from "./components/ChainBackground";
 import VideoSplashScreen from "./components/Videosplash";
+import RegisterForm from "./components/registerform";
+
 function App() {
   const [showSplash, setShowSplash] = useState(true);
+
+  const MainWebsite = () => (
+    <>
+      <Navbar />
+      <Home />
+      <div className="with-background">
+        <ChainBackground particleId="tsparticles-global" />
+        <InternalEvents />
+        <ExternalEvents />
+        <Achievements />
+        <Sponsors />
+        <AboutUs />
+        <Patron />
+        <Team />
+        <Register />
+        <Gallery />
+        <Archive />
+        <Contact />
+      </div>
+    </>
+  );
+
   return (
     <div className="App">
       {showSplash ? (
         <VideoSplashScreen onFinish={() => setShowSplash(false)} />
       ) : (
-        <>
-          <Navbar />
-          <Home />
-          <div className="with-background">
-            <ChainBackground particleId="tsparticles-global" />
-            <InternalEvents />
-            <ExternalEvents />
-            <Achievements />
-            <Sponsors />
-            <AboutUs />
-            <Patron />
-            <Team />
-            <Register />
-            <Gallery />
-            <Archive />
-            <Contact />
-          </div>
-        </>
+        <Routes>
+          <Route path="/" element={<MainWebsite />} />
+          <Route path="/registerform" element={<RegisterForm />} />
+        </Routes>
       )}
     </div>
   );
