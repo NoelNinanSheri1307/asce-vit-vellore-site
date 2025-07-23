@@ -77,7 +77,7 @@ const RegisterForm = () => {
         <input name="entry.475618579" type="text" placeholder="Course Enrolled in VIT" required />
         <input name="entry.1823431793" type="text" placeholder="Graduation Year" required />
 
-        <button type="submit">Join Now</button>
+        <button class= "joinbutton" type="submit">Join Now</button>
         <button type="button" className="return-btn" onClick={() => window.location.href = "/#register"}>
           Return to Main Page
         </button>

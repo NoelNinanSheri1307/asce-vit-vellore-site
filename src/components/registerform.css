@@ -53,14 +53,14 @@
   background: white;
 }
 
-.register-form button {
-  background-color: #007bff;
+.joinbutton{
+  background-color: #86e44f;
   color: white;
   cursor: pointer;
   font-weight: bold;
 }
 
-.register-form button:hover {
+.joinbutton:hover {
   background-color: #0056b3;
 }
 
@@ -99,9 +99,13 @@
 .return-btn {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #ccc;
+  background-color: #e83f3f;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.return-btn:hover
+{
+  background-color:#db2929;
+}
