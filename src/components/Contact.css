@@ -1,7 +1,9 @@
 .contact-section {
-  padding: 100px 20px;
+  padding: 50px 20px;
   color: white;
   text-align: center;
+  margin-bottom:0px;
+  height:100px;
 }
 
 .contact-section h2 {
@@ -83,4 +85,13 @@
   background-color: #ffdada;
   color: #d00000;
   border: 1px solid #d00000;
+}
+.asce-footer {
+  color: white;
+  padding: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom:0px;
+  border-top: 1px solid #444;
+  position:relative;  
 }

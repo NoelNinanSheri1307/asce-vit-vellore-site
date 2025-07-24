@@ -60,6 +60,7 @@ const Contact = () => {
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
+      
 
       {/* Animated message box */}
       <AnimatePresence>
@@ -75,8 +76,12 @@ const Contact = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
+        <footer className="asce-footer">
+          <p>Developed by Noel Ninan and Arpit Baiju</p>
+          <p>Trademark © ASCE VIT 2025 · All rights reserved</p>
+      </footer>
     </motion.section>
+    
   );
 };
 
