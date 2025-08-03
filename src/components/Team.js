@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Team.css";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -26,90 +26,87 @@ const teamMembers = [
   { name: "V S Vignesh Pranav", role: "Management Head", image: vigneshImg, linkedin: "https://www.linkedin.com/in/vignesh-pranav-9310881b1" },
 ];
 
-const Team = () => {
-  const orbitRef = useRef(null);
-  const animationRef = useRef(null);
-  const angleRef = useRef(0);
-  const [expandedCard, setExpandedCard] = useState(null);
+const INTERVAL = 1500;
+const SPREAD = 0.6;
+const CARD_WIDTH = 280;
+const GAP = 32;
+
+export default function Team() {
+  const [centerIdx, setCenterIdx] = useState(0);
+  const [manualPause, setManualPause] = useState(false);
+  const [clickedIdx, setClickedIdx] = useState(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const radius = 300;
-    const speed = 0.5;
-
-    const animate = () => {
-      if (orbitRef.current && expandedCard === null) {
-        const children = orbitRef.current.children;
-        const cardCount = children.length;
-        const angleStep = 360 / cardCount;
-
-        for (let i = 0; i < cardCount; i++) {
-          const cardAngle = angleRef.current + angleStep * i;
-          const rad = (cardAngle * Math.PI) / 180;
-          const x = radius * Math.cos(rad);
-          const y = radius * Math.sin(rad);
-          children[i].style.transform = `translate(${x}px, ${y}px)`;
-        }
-        angleRef.current += speed;
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [expandedCard]); // animation reacts to change in expandedCard
+    if (manualPause) return;
+    const id = setInterval(() => {
+      setCenterIdx(i => (i + 1) % teamMembers.length);
+    }, INTERVAL);
+    return () => clearInterval(id);
+  }, [manualPause]);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".orbit-card")) {
-        setExpandedCard(null);
+    const handleOutsideClick = e => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setManualPause(false);
+        setClickedIdx(null); // 👈 clear highlight
       }
     };
 
-    if (expandedCard !== null) {
-      document.addEventListener("click", handleClickOutside);
-    } else {
-      document.removeEventListener("click", handleClickOutside);
-    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [expandedCard]);
-
-  const handleCardClick = (e, index) => {
-    e.stopPropagation();
-    setExpandedCard(index === expandedCard ? null : index); // toggle
-  };
+  const visible = [];
+  for (let offset = -2; offset <= 2; offset++) {
+    const idx = (centerIdx + offset + teamMembers.length) % teamMembers.length;
+    visible.push({ ...teamMembers[idx], pos: offset, actualIdx: idx });
+  }
 
   return (
     <section className="team-section">
       <h2>Our Team</h2>
-      <div className="orbit-container">
-        <div className="orbit" ref={orbitRef}>
-          {teamMembers.map((member, index) => (
+      <div className="slideshow-container" ref={containerRef}>
+        {visible.map(member => {
+          const translateX = member.pos * (CARD_WIDTH + GAP) * SPREAD;
+          const scale = 1 - Math.abs(member.pos) * 0.12;
+          const opacity = 1 - Math.abs(member.pos) * 0.2;
+          const zIndex = 5 - Math.abs(member.pos);
+          const isCenter = member.actualIdx === centerIdx;
+          const isClicked = member.actualIdx === clickedIdx;
+
+          return (
             <div
-              className={`orbit-card ${expandedCard === index ? "expanded" : ""}`}
-              key={index}
-              onClick={(e) => handleCardClick(e, index)}
+              key={member.name}
+              className={`slideshow-card${isCenter ? " pos0" : ""}${isCenter && isClicked ? " clicked" : ""}`}
+              style={{
+                transform: `translateX(${translateX}px) scale(${scale})`,
+                opacity,
+                zIndex,
+              }}
+              onClick={() => {
+                setCenterIdx(member.actualIdx);
+                setManualPause(true);
+                setClickedIdx(member.actualIdx);
+              }}
             >
               <img src={member.image} alt={member.name} />
               <h3>{member.name}</h3>
               <p>{member.role}</p>
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="linkedin-icon"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FaLinkedin />
-              </a>
+              <div className="icon-container" onClick={e => e.stopPropagation()}>
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="linkedin-icon"
+                  >
+                    <FaLinkedin />
+                  </a>
+                </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
-};
-
-export default Team;
+}

@@ -1,194 +1,63 @@
 :root {
-  /* Colors */
-  --card-bg-hue: 0; /* irrelevant now */
-  --card-bg-sat: 0%; /* irrelevant now */
-  --text-color: #ffffff;
-  --heading-color: #00bfff;
-
-  /* Optional additional color variables for future use */
+  --card-width: 500px;     /* Landscape aspect ratio */
+  --card-height: 250px;
   --accent-color: #00bfff;
-  --bg-dark: #000000;
-  --bg-light: #0d0d0deb;
-  --neutral-1: #333333;
-  --neutral-2: #444444;
-  --neutral-3: #ccc;
-  --neutral-4: #eee;
-  --neutral-5: #aaa;
-  --shadow-color: rgba(0, 191, 255, 0.3);
-  --hover-shadow: rgba(0, 191, 255, 0.2);
-  --active-shadow: rgba(0,191,255,0.3);
-  --overlay-dark: rgba(10, 10, 10, 0.7);
-
-  /* Dimensions */
-  --carousel-max-w: 600px;
-  --carousel-h: 23rem;
-  --card-offset-x: 1.5rem;
-  --perspective: 800px;
-
-  /* Transitions */
-  --transition-speed: 0.3s;
-  --easing: ease-out;
+  --text-color: white;
+  --background-color: #000;
 }
 
-/* ===== Section Wrapper ===== */
 .gallery-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 2rem 0;
   text-align: center;
-  width: 100%;
+  background: var(--background-color);
+  background-color: transparent;
+  color: var(--text-color);
+  border-radius: 10px;
 }
 
 .gallery-section h2 {
   font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 3rem;
-  color: white;
-}
-
-/* ===== Carousel Container ===== */
-.carousel {
-  position: relative;
-  width: 100%;
-  max-width: var(--carousel-max-w);
-  height: var(--carousel-h);
-  perspective: var(--perspective);
-  transform-style: preserve-3d;
-  margin: 0 auto;
-  overflow: visible;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* ===== Card Positioning ===== */
-.card-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform-origin: center center;
-  transform:
-    translate(-50%, -50%)
-    rotateY(calc(var(--offset) * 55deg))
-    scale(calc(1 - var(--abs-offset) * 0.1))
-    translateZ(calc(var(--abs-offset) * -28rem));
-  filter: brightness(calc(1 - var(--abs-offset) * 0.2))
-          blur(calc(var(--abs-offset) * 0.7rem));
-  transition:
-    transform 0.75s cubic-bezier(0.77, 0, 0.175, 1),
-    filter 0.6s ease-in-out,
-    opacity 0.5s ease-in-out;
-  backface-visibility: hidden;
-}
-
-/* ===== Card Styling ===== */
-.card {
-  width:100%;
-  height: 100%;
-  padding: 2%;
-  background-color: var(--neutral-1);
-  border: 2px solid var(--accent-color);
-  border-radius: 1rem;
-  color: var(--text-color);
-  text-align: center;
-  font-size: 20;
-  transition: 
-    box-shadow var(--transition-speed) var(--easing),
-    transform var(--transition-speed) var(--easing),
-    border-color var(--transition-speed) var(--easing);
-  box-shadow: 0 0 0 transparent;
-}
-
-.card:hover {
-  box-shadow: 0 0 25px var(--hover-shadow);
-  transform: scale(1.01);
-}
-
-.card h2 {
-  text-align: center;
-  font-size: 18;
-  margin-bottom: 0.7em;
-  color: var(--heading-color);
-  opacity: var(--active);
-  transition: opacity var(--transition-speed) var(--easing);
-}
-
-.card p {
-  opacity: var(--active);
-  transition: opacity var(--transition-speed) var(--easing);
-}
-
-/* ===== Mobile ===== */
-@media (max-width: 768px) {
-  .carousel {
-    max-width: 90vw;
-    height: 18rem;
-  }
-
-  .card {
-    padding: 1rem;
-  }
-}
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit:cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-.card h2,
-.card p.caption {
-  text-align: center;
-  font-size: 1.1rem;
-  color: var(--text-color);
-  margin-top: 0.5rem;
-  font-size: 20;
-}
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--bg-light);
+  margin-bottom: 1.5rem;
   color: var(--accent-color);
-  border: none;
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  z-index: 5;
-  border-radius: 0.5rem;
-  transition: background-color 0.3s ease;
 }
 
-.nav-btn:hover {
-  background-color: var(--neutral-2);
+.horizontal-slideshow {
+  display: flex;
+  gap: 4rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: auto; /* Disable smooth since we're animating */
+  scrollbar-width: none;
+  padding: 2rem 3rem;
 }
 
-.nav-btn.left {
-  left: -18rem;
+.horizontal-slideshow::-webkit-scrollbar {
+  display: none;
 }
 
-.nav-btn.right {
-  right: -18rem;
+.gallery-card {
+  flex: 0 0 auto;
+  width: var(--card-width);
+  height: var(--card-height);
+  background-color: #111;
+  border-radius: 10px;
+  overflow: visible;
+  border: 2px solid transparent;
+  transition: transform 0.4s ease, border-color 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-/* Mobile adjustment */
-@media (max-width: 768px) {
-  .nav-btn {
-    font-size: 1.5rem;
-    padding: 0.3rem 0.6rem;
-  }
+/* .gallery-card:hover {
+  transform: scale(1.25);
+  border-color: var(--accent-color);
+  z-index: 10;
+} */
 
-  .nav-btn.left {
-    left: -1.5rem;
-  }
-
-  .nav-btn.right {
-    right: -1.5rem;
-  }
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
 }
-
-
