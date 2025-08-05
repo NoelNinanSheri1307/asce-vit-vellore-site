@@ -35,9 +35,12 @@
   position: absolute;
   top: 0;
   left: 50%;
-  width: var(--card-width);
-  height: var(--card-height);
-  margin-left: calc(-0.5 * var(--card-width));
+  /* width: var(--card-width);
+  height: var(--card-height); */
+  width: 350px;
+  height: 250px;
+  margin-left: -175px;
+
   transition:
     transform 1.1s ease,
     opacity 1.1s ease,
@@ -85,8 +88,8 @@
 
 /* keep existing inner styles intact */
 .slideshow-card img {
-  width: 100%;
-  height: 260px;
+  width: 350px;
+  height: 250px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 0.75rem;
