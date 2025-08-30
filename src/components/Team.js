@@ -66,7 +66,7 @@ export default function Team() {
   return (
     <section className="team-section">
       <h2>Our Team</h2>
-      <div className="slideshow-container" ref={containerRef}>
+      <div className="slideshow-container" id="team" ref={containerRef}>
         {visible.map(member => {
           const translateX = member.pos * (CARD_WIDTH + GAP) * SPREAD;
           const scale = 1 - Math.abs(member.pos) * 0.12;

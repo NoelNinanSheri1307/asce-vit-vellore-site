@@ -19,14 +19,14 @@
 .team-section {
   text-align: center;
   color: white;
-  padding: 2rem 0;
+  padding: 100px 20px;
   background: transparent;
 }
 
 .team-section h2 {
   font-size: 2.5rem;
-  color: #00bfff;
-  margin-bottom: 1.5rem;
+  color:white;
+  margin-bottom: 30px;
 }
 
 
