@@ -1,3 +1,8 @@
+#gallery {
+   scroll-margin-top: 60px; /* adjust until it's perfect for your navbar */
+}
+
+
 :root {
   --card-width: 500px;     /* Landscape aspect ratio */
   --card-height: 250px;

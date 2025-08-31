@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import "./Achievements.css";
 import symposiumImg from "../imagesandassets/symposiumwinners.jpg"; 
 import aakarImg from "../imagesandassets/aakarwinners.jpg"; 
+import { createPortal } from "react-dom";
 
 const achievements = [
   {
@@ -125,7 +126,7 @@ const Achievements = () => {
           </div>
         ))}
       </div>
-      {selected && (
+      {selected && createPortal(
         <div className="modal-overlay" onClick={() => setSelected(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setSelected(null)}>
@@ -135,7 +136,7 @@ const Achievements = () => {
             <h4>{selected.description}</h4>
             <div className="modal-body">{selected.details}</div>
           </div>
-        </div>
+        </div>,document.body
       )}
     </motion.section>
   );

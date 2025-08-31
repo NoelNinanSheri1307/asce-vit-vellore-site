@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import "./InternalEvents.css";
 
@@ -65,7 +66,12 @@ const events = [
     image: require("../imagesandassets/bridge.jpg"),
     description:
       "A fun civil engineering icebreaker that encouraged creative thinking through games and design challenges.",
-    winners: <p>This event was an icebreaker to welcome new members and foster bonding through fun civil-themed activities.</p>
+    winners: (
+      <p>
+        This event was an icebreaker to welcome new members and foster bonding
+        through fun civil-themed activities.
+      </p>
+    )
   },
   {
     title: "DAMMED DECISION",
@@ -116,14 +122,14 @@ const InternalEvents = () => {
     return () => container.removeEventListener("wheel", handleWheel);
   }, []);
 
-        useEffect(() => {
-      if (selectedEvent) {
-        document.body.classList.add("modal-open");
-      } else {
-        document.body.classList.remove("modal-open");
-      }
-      return () => document.body.classList.remove("modal-open");
-    }, [selectedEvent]);
+  useEffect(() => {
+    if (selectedEvent) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+    return () => document.body.classList.remove("modal-open");
+  }, [selectedEvent]);
 
   return (
     <motion.section
@@ -134,37 +140,37 @@ const InternalEvents = () => {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2>Internal Events</h2>
+      <center>
+        <h2>Internal Events</h2>
 
-      <div className="event-scroll-container" ref={scrollContainerRef}>
-        {events.map((event, index) => (
-          <div
-            className="event-card shimmer-border"
-            key={index}
-            onClick={() => setSelectedEvent(event)}
-          >
-            <img src={event.image} alt={event.title} className="event-image" />
-            <h3>{event.title}</h3>
-            <p className="event-date">{event.date}</p>
-            <p className="event-description">{event.description}</p>
-          </div>
-        ))}
-      </div>
-
-      {selectedEvent && (
-        <div className="modal-overlay" onClick={closeDialog}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeDialog}>×</button>
-            <h2>
-              {selectedEvent.title === "BRIDGE THE GAP"
-                ? "Bridge The Gap – Icebreaker Session"
-                : `Winners of ${selectedEvent.title}`}
-            </h2>
-
-            <div className="modal-body">{selectedEvent.winners}</div>
-          </div>
+        <div className="event-scroll-container" ref={scrollContainerRef}>
+          {events.map((event, index) => (
+            <div
+              className="event-card shimmer-border"
+              key={index}
+              onClick={() => setSelectedEvent(event)}
+            >
+              <img src={event.image} alt={event.title} className="event-image" />
+              <h3>{event.title}</h3>
+              <p className="event-date">{event.date}</p>
+            </div>
+          ))}
         </div>
-      )}
+      </center>
+
+      {selectedEvent && createPortal(
+  <div className="event-modal-overlay" onClick={closeDialog}>
+    <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
+      <h3>{selectedEvent.title}</h3>
+      <p className="event-date">{selectedEvent.date}</p>
+      <div className="event-description">{selectedEvent.description}</div>
+      <div className="modal-body">{selectedEvent.winners}</div>
+      <button onClick={closeDialog} className="close-button">Close</button>
+    </div>
+  </div>,
+  document.body
+)}
+
     </motion.section>
   );
 };

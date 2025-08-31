@@ -1,3 +1,7 @@
+#register{
+   scroll-margin-top: 140px; /* adjust until it's perfect for your navbar */
+}
+
 .register-header {
   display: flex;
   align-items: center;

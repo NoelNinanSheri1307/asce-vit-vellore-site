@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 *
 {
-  font-family:'Footlight MT Light';
+  font-family:'Times New Roman';
+  /* scroll-behavior: smooth; */
+}
+html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   padding: 0;
   background-color: #000;
   color: #fff;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 .section {
@@ -17,6 +21,7 @@ body {
   min-height: 100vh;
   text-align: center;
   border-bottom: 1px solid #222;
+  
 }
 
 h2 {

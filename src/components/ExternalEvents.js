@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./ExternalEvents.css";
+import { createPortal } from "react-dom";
 
 const externalEvents = [
   {
@@ -56,7 +57,7 @@ const ExternalEvents = () => {
       </div>
 
       {/* Modal */}
-      {selectedEvent && (
+      {selectedEvent && createPortal(
         <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
           <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
             <h3>{selectedEvent.title}</h3>
@@ -64,7 +65,8 @@ const ExternalEvents = () => {
             <div className="event-description">{selectedEvent.description}</div>
             <button onClick={() => setSelectedEvent(null)} className="close-button">Close</button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </motion.section>
   );

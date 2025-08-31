@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom"; 
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -20,7 +20,16 @@ import VideoSplashScreen from "./components/Videosplash";
 import RegisterForm from "./components/registerform";
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  // show splash only if it hasn't been played this session
+  const [showSplash, setShowSplash] = useState(() => {
+    return !sessionStorage.getItem("splashPlayed");
+  });
+
+  // called when splash finishes (pass this to VideoSplashScreen)
+  const handleSplashFinish = () => {
+    sessionStorage.setItem("splashPlayed", "true");
+    setShowSplash(false);
+  };
 
   const MainWebsite = () => (
     <>
@@ -46,7 +55,7 @@ function App() {
   return (
     <div className="App">
       {showSplash ? (
-        <VideoSplashScreen onFinish={() => setShowSplash(false)} />
+        <VideoSplashScreen onFinish={handleSplashFinish} />
       ) : (
         <Routes>
           <Route path="/" element={<MainWebsite />} />

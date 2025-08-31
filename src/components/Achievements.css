@@ -1,4 +1,10 @@
-  .achievements-container {
+ /* Achievements.css */
+#achievements {
+  scroll-margin-top: 140px; 
+}
+
+ 
+ .achievements-container {
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -97,7 +103,44 @@
   max-height: 80vh;         
   overflow-y: auto;         
   position: relative;
+  scrollbar-width: none;
+  
 }
+/* Only the main modal title is centered */
+.modal-content h2 {
+  text-align: center;
+  width: 100%;
+}
+.modal-content p{
+  font-weight: normal;
+}
+.modal-content h4 {
+  text-align:left;
+  width: 100%;
+  /* font-weight: bold; */
+}
+
+/* Description paragraph(s) right after title, center them */
+.modal-content > p:first-of-type {
+  text-align: center;
+  width: 100%;
+}
+
+/* Modal body (including h4s and ul) is left-aligned */
+.modal-body {
+  margin-top: 20px;
+  line-height: 1.6;
+  text-align: left;
+  width: 100%;
+}
+
+/* Ensure lists look proper */
+.modal-body ul {
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 .modal-close {
   position: absolute;
   top: 15px;

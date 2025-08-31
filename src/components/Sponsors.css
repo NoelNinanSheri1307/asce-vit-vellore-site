@@ -2,6 +2,7 @@
   padding: 100px 20px;
   color: white;
   text-align: center;
+  z-index: 1;
 }
 
 .sponsors-section h2 {

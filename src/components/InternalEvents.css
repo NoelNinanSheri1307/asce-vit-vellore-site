@@ -17,7 +17,8 @@
 
 .event-scroll-container {
   display: flex;
-  gap:1 rem;
+  gap:20px;
+  justify-content: center;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -77,10 +78,11 @@
   border-color: #00bfff;
 }
 
-.event-image {
+.event-card img.event-image {
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  background-color: black;
+  object-fit:contain;
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -99,10 +101,14 @@
 
 .event-description {
   line-height: 1.5;
+  margin-top: 10px;
+  
 }
+/* 
 .modal-overlay {
   position: fixed;
-  top: 0;
+  padding-top: 70px;
+  margin-top: 10px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -114,11 +120,14 @@
 }
 
 .modal-content {
+  margin-top: 110px;
   background-color: #111;
   border-radius: 15px;
   padding: 30px;
   width: 90%;
   max-width: 500px;
+  max-height: 50%;
+  overflow-y: auto;    
   color: white;
   text-align: left;
   position: relative;
@@ -142,4 +151,74 @@
 .modal-body h4 {
   margin-top: 15px;
   color: #00bfff;
+} */
+
+/* Modal overlay that covers viewport and centers dialog */
+.event-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  inset: 0; /* shorthand for top:0, right:0, bottom:0, left:0 */
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;              /* small page padding for small viewports */
+  box-sizing: border-box;
+}
+
+/* Modal content: compact, scrolls internally if tall */
+.event-modal-content {
+  background: #111;
+  color: white;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: left;
+  position: relative;
+  border: 2px solid #00bfff;
+  height: min(60vh, 560px); /* up to 560px, otherwise 60% of viewport */
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+body.modal-open {
+  overflow: hidden;   /* stop background scroll */
+}
+
+/* matches external close button */
+.close-button {
+  margin-top: 20px;
+  background-color: #00bfff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* keep modal list and headings styled */
+.event-modal-content .modal-body ul {
+  padding-left: 20px;
+}
+.event-modal-content .modal-body h4 {
+  margin-top: 15px;
+  color: #00bfff;
+}
+
+/* small responsive tweak so modal doesn't collide with fixed navbar */
+@media (min-width: 600px) {
+  .event-modal-overlay {
+    align-items: center; /* centered on larger screens */
+  }
+}
+@media (max-width: 599px) {
+  .event-modal-content { padding: 18px; }
 }

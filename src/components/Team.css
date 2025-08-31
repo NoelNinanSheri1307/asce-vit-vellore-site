@@ -1,3 +1,7 @@
+#team { 
+  scroll-margin-top: 200px; /* adjust until it's perfect for your navbar */
+}
+
 :root {
   --card-width: 280px;
   --card-height: 400px;

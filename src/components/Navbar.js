@@ -12,6 +12,24 @@
             <img src={logo} alt="ASCE Logo" height="50" />
           </a>
 
+          
+        </div>
+
+        <div className="navbar-links">
+          <a href="#home">Home</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#patron">Faculty</a>
+          <a href="#team">Team</a>
+          <a href="#register">Register</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+          <img
+            src={engineerIcon}
+            alt="Engineer Icon"
+            className="engineer-icon"
+          />
+        </div>
+        <div className="navbar-right">
           {/* Social Icons */}
           <div className="social-icons">
             <a
@@ -34,21 +52,6 @@
               <FiMail className="social-icon" href="#contact"/>
             </a>
           </div>
-        </div>
-
-        <div className="navbar-links">
-          <a href="#home">Home</a>
-          <a href="#achievements">Achievements</a>
-          <a href="#patron">Faculty</a>
-          <a href="#team">Team</a>
-          <a href="#register">Register</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
-          <img
-            src={engineerIcon}
-            alt="Engineer Icon"
-            className="engineer-icon"
-          />
         </div>
       </nav>
     );
