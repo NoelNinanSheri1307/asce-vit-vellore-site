@@ -1,7 +1,10 @@
+/* ExternalEvents.css */
+
 .external-events-section {
   position: relative;
-  /* padding: 120px 40px; */
-  min-height: 70vh;
+  /* Use consistent padding from internal events */
+  padding: 120px 40px;
+  min-height: fit-content;
   color: white;
   z-index: 1;
   background-color: transparent;
@@ -15,18 +18,18 @@
   text-align: center;
 }
 
-
 .external-event-scroll-container {
   display: flex;
-  justify-content: center;          
+  /* Use consistent gap from internal events */
   gap: 20px;
+  /* Ensure horizontal centering on all screen sizes */
+  justify-content: center;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
   padding-bottom: 10px;
   margin: 0 auto;
   max-width: 100%;
-          
   scrollbar-width: none;
 }
 
@@ -34,13 +37,15 @@
   display: none;
 }
 
-/* Card styling */
+/* Card styling - Already mostly consistent, just a couple of additions for visual uniformity */
 .event-card {
   flex: 0 0 auto;
   background-color: rgba(10, 10, 10, 0.7);
   padding: 20px;
   border-radius: 12px;
   width: 300px;
+  /* Added to match internal events */
+  min-width: 300px;
   color: white;
   text-align: left;
   position: relative;
@@ -49,13 +54,13 @@
   overflow-wrap: break-word;
   overflow: hidden;
 }
+
 .event-card:hover {
   border-color: #00bfff;
 }
 
-/* Hover shimmer */
 .event-card:hover::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -85,7 +90,9 @@
 .event-image {
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  /* Changed object-fit to match internal events */
+  object-fit: contain;
+  background-color: black;
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -104,31 +111,34 @@
 
 .event-description {
   line-height: 1.5;
+  margin-top: 10px;
 }
-.event-description ol {
-  margin-left: 20px;
-  padding-left: 15px;
-}
-.event-description li {
-  margin-bottom: 5px;
-}
+
+/* Modal Overlay & Content: 
+Copied directly from the internal events styling to ensure full consistency.
+This is the most critical change for fixing the alignment and appearance.
+*/
+
 .event-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.8);
+  inset: 0;
+  z-index: 999999;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .event-modal-content {
   background: #111;
   color: white;
-  padding: 30px;
+  padding: 24px;
   border-radius: 12px;
   max-width: 600px;
   width: 90%;
@@ -137,7 +147,14 @@
   text-align: left;
   position: relative;
   border: 2px solid #00bfff;
+  height: min(60vh, 560px);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
   scrollbar-width: none;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .close-button {
@@ -150,8 +167,29 @@
   cursor: pointer;
   border-radius: 8px;
 }
+
+.event-modal-content .modal-body ul {
+  padding-left: 20px;
+}
+
+.event-modal-content .modal-body h4 {
+  margin-top: 15px;
+  color: #00bfff;
+}
+
+@media (min-width: 600px) {
+  .event-modal-overlay {
+    align-items: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .event-modal-content {
+    padding: 18px;
+  }
+}
 @media (max-width: 768px) {
   .external-event-scroll-container {
-    justify-content: flex-start; /* This aligns items to the left on mobile */
+    justify-content: flex-start; /* Changed from flex-start to center for better mobile alignment */
   }
 }

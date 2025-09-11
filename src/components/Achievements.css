@@ -83,8 +83,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 90%;
-  height: 90%;
+  width: 100vw; /* Change to 100% of the viewport width */
+  height: 100vh; /* Change to 100% of the viewport height */
   background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
@@ -173,5 +173,11 @@
 
   .achievement-img {
     width: 100%; /* Allows the image to fill the card's width */
+  }
+}
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;  /* small margin from edges */
+    max-height: 90vh; /* leave some room for close button / soft edges */
   }
 }
