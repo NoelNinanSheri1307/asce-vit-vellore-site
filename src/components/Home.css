@@ -1,10 +1,12 @@
+
+
 #home {
    scroll-margin-top: 140px; /* adjust until it's perfect for your navbar */
+   overflow-x: hidden;
 }
 
 .home-section {
   padding: 20px 20px 120px 20px;  
-  min-height: 100vh;
   text-align: center;
   min-height: 100vh;
   color: white;font-family: 'Poppins', sans-serif;
@@ -66,4 +68,12 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
   pointer-events: none;
   z-index: 2;
+}
+@media (max-width: 768px) {
+  .home-section p {
+    font-size: 1.25rem; /* Increase font size for better readability on mobile */
+  }
+  .home-section h1 {
+    font-size: 2.25rem; /* Make headings more prominent on smaller screens */
+  }
 }

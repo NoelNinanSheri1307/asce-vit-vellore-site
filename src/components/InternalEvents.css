@@ -221,4 +221,10 @@ body.modal-open {
 }
 @media (max-width: 599px) {
   .event-modal-content { padding: 18px; }
+
+}
+@media (max-width: 768px) {
+  .event-scroll-container {
+    justify-content: flex-start; /* This aligns items to the left on mobile */
+  }
 }

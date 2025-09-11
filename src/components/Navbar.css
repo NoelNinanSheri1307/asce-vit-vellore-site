@@ -1,19 +1,65 @@
+/* Navbar.css - replace relevant parts with this */
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: black;
-  padding: 20px 40px;
+  background-color: #000;
+  padding: 14px 32px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 60px;
+  height: 100px;
+  box-sizing: border-box;
+  
 }
 
+/* Left area (logo) */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+}
+
+/* logo sizing */
+.navbar-logo img {
+  height: 50px;
+  display: block;
+}
+
+/* center links - desktop */
+.navbar-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto; /* allow center growth */
+  margin: 0 20px;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+/* links style */
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-block;
+  padding: 6px 4px;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus {
+  color: #00bfff;
+  transform: translateY(-3px);
+}
+
+/* right social icons */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .social-icons {
@@ -22,52 +68,100 @@
 }
 
 .social-icon {
-  color: white;
+  color: #fff;
   font-size: 1.4rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
-.social-icon:hover {
+.social-icon:hover,
+.social-icon:focus {
   color: #00bfff;
-  transform: scale(1.2);
-}
-
-.navbar-logo img {
-  height: 50px;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-  display: inline-block;
-}
-
-.navbar-links a:hover {
-  color: #00bfff;
-  transform: translateY(-3px);
-}
-.engineer-icon {
-  height: 70px;                
-  margin-left: 20px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  padding: 6px;                
-  border-radius: 8px;          
-}
-.engineer-icon:hover {
   transform: scale(1.15);
 }
 
+/* engineer icon */
+.engineer-icon {
+  height: 70px;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  padding: 6px;
+  border-radius: 8px;
+}
+.engineer-icon:hover,
+.engineer-icon:focus {
+  transform: scale(1.12);
+}
 
+/* hamburger button hidden desktop */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 10px 16px;
+  }
+
+  /* show hamburger */
+  .menu-btn {
+    display: block;
+  }
+
+  /* hide the center links by default - we'll slide them down */
+  .navbar-links {
+    display: flex; /* keep flex for layout when visible */
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px; /* same as navbar height */
+    background: #000;
+    padding: 12px 16px;
+    gap: 12px;
+    box-sizing: border-box;
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* when open: scale in */
+  .navbar-links.open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* links become full width touch targets */
+  .navbar-links a {
+    display: block;
+    width: 100%;
+    padding: 12px 8px;
+    border-radius: 6px;
+  }
+
+  /* shrink engineer icon on mobile or hide it if you prefer */
+  .engineer-icon {
+    height: 48px;
+    margin-left: 0;
+    align-self: flex-end;
+  }
+
+  /* move social icons inside or keep in right area - optionally hide some */
+  .navbar-right {
+    display: none; /* hide on very small screens to save space. remove this line if you want them visible */
+  }
+}

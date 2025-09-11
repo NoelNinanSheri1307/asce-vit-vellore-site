@@ -142,7 +142,6 @@
     --slide-distance: 110%;
   }
   .slideshow-container {
-    width: calc(5 * var(--card-width) + 4 * var(--gap-x));
     height: var(--card-height);
   }
   .slideshow-card img {
@@ -150,6 +149,7 @@
     min-height: 120px;
   }
 }
+
 
 @media (max-width: 600px) {
   :root {
@@ -159,14 +159,22 @@
     --slide-distance: 110%;
   }
   .slideshow-container {
-    width: var(--card-width);
     height: var(--card-height);
   }
   .slideshow-card img {
     height: 60vw;
     min-height: 80px;
+  }  
+  .slideshow-card:hover,
+  .slideshow-card.pos0:hover,
+  .slideshow-card.pos0.clicked {
+    border: 3px solid transparent; /* <--- Removes the border */
+    box-shadow: none; /* <--- Removes the box shadow */
   }
 }
+
+
+
 .linkedin-icon {
   color: #0077b5;
   font-size: 1.5rem;

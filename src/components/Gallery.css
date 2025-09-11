@@ -67,3 +67,20 @@
   border-radius: 10px;
   display: block;
 }
+@media (max-width: 768px) {
+  :root {
+    --card-width: 80vw;
+    --card-height: 40vw;
+  }
+  
+  .horizontal-slideshow {
+    gap: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .gallery-card {
+    /* Set dimensions using the new CSS variables */
+    width: var(--card-width);
+    height: var(--card-height);
+  }
+}
