@@ -1,8 +1,9 @@
 
 
 #home {
-   scroll-margin-top: 140px; /* adjust until it's perfect for your navbar */
+   scroll-margin-top: 160px; /* adjust until it's perfect for your navbar */
    overflow-x: hidden;
+   padding-top: var(--navbar-height);
 }
 
 .home-section {

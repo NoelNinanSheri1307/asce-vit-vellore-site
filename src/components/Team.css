@@ -150,7 +150,6 @@
   }
 }
 
-
 @media (max-width: 600px) {
   :root {
     --card-width: 70vw;
@@ -158,20 +157,31 @@
     --gap-x: 8px;
     --slide-distance: 110%;
   }
+
   .slideshow-container {
     height: var(--card-height);
   }
+
   .slideshow-card img {
     height: 60vw;
     min-height: 80px;
   }  
+
+  /* Kill hover styles only */
   .slideshow-card:hover,
   .slideshow-card.pos0:hover,
   .slideshow-card.pos0.clicked {
-    border: 3px solid transparent; /* <--- Removes the border */
-    box-shadow: none; /* <--- Removes the box shadow */
+    border: none !important;
+    box-shadow: none !important;
+    /* don’t remove transform — that’s what carousel uses */
+  }
+
+  .linkedin-icon:hover {
+    color: inherit !important;
+    transform: none !important;
   }
 }
+
 
 
 

@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 *
+
 {
   font-family:'Times New Roman';
   box-sizing: border-box;
   /* scroll-behavior: smooth; */
 }
+:root {
+  --navbar-height: 100px;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -17,6 +22,7 @@ html, body {
 
 body {
   margin: 0;
+  padding-top: var(--navbar-height);
   padding: 0;
   background-color: #000;
   color: #fff;
@@ -80,4 +86,10 @@ html
 }
 body.modal-open {
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 70px; /* mobile size */
+    
+  }
 }

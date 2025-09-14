@@ -24,3 +24,8 @@
   object-fit: cover;
   transition: opacity 0.5s ease-in-out;
 }
+@media (max-width: 768px) {
+  .video-splash {
+    display: none !important;
+  }
+}
