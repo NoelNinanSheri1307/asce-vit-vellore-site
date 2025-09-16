@@ -7,16 +7,41 @@ const Home = () => {
   const fullText = "Welcome to ASCE VIT";
   const [typedText, setTypedText] = useState("");
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Track mobile breakpoint
   useEffect(() => {
-    if (index < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText((prev) => prev + fullText.charAt(index));
-        setIndex(index + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // If mobile, show full text immediately and skip typing animation
+  useEffect(() => {
+    if (isMobile) {
+      setTypedText(fullText);
+      setIndex(fullText.length);
+      return;
     }
-  }, [index, fullText]);
+
+    // desktop: run typewriter
+    setTypedText("");
+    setIndex(0);
+  }, [isMobile, fullText]);
+
+  // Typewriter effect for non-mobile only
+  useEffect(() => {
+    if (isMobile) return; // don't run on mobile
+
+    if (index < fullText.length) {
+      const t = setTimeout(() => {
+        setTypedText((prev) => prev + fullText.charAt(index));
+        setIndex((n) => n + 1);
+      }, 100);
+      return () => clearTimeout(t);
+    }
+  }, [index, fullText, isMobile]);
 
   return (
     <motion.section
@@ -36,14 +61,19 @@ const Home = () => {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="typewriter-heading"
-      >
-        {typedText}
-      </motion.h1>
+      {isMobile ? (
+  <h1 className="typewriter-heading">{fullText}</h1> // static text for mobile
+) : (
+  <motion.h1
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+    className="typewriter-heading"
+  >
+    {typedText}
+  </motion.h1>
+)}
+
 
       <h1>Empowering the Civil Engineers of Tomorrow</h1>
       <p>

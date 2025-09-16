@@ -26,9 +26,10 @@ const teamMembers = [
   { name: "V S Vignesh Pranav", role: "Management Head", image: vigneshImg, linkedin: "https://www.linkedin.com/in/vignesh-pranav-9310881b1" },
 ];
 
-const INTERVAL = 1500;
+const INTERVAL = 1800; // keep > transition to avoid overlap
 const SPREAD = 0.6;
 const CARD_WIDTH = 280;
+const CARD_HEIGHT = 400;
 const GAP = 32;
 
 export default function Team() {
@@ -49,7 +50,7 @@ export default function Team() {
     const handleOutsideClick = e => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setManualPause(false);
-        setClickedIdx(null); // 👈 clear highlight
+        setClickedIdx(null);
       }
     };
 
@@ -57,6 +58,22 @@ export default function Team() {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
 
+  // set CSS variables on container so media queries still work
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    el.style.setProperty("--card-width", `${CARD_WIDTH}px`);
+    el.style.setProperty("--card-height", `${CARD_HEIGHT}px`);
+    el.style.setProperty("--gap-x", `${GAP}px`);
+    el.style.setProperty("--spread", `${SPREAD}`);
+    // computed slide-distance used by CSS: (card + gap) * spread
+    el.style.setProperty(
+      "--slide-distance",
+      `${(CARD_WIDTH + GAP) * SPREAD}px`
+    );
+  }, []);
+
+  // compute visible set (same as before)
   const visible = [];
   for (let offset = -2; offset <= 2; offset++) {
     const idx = (centerIdx + offset + teamMembers.length) % teamMembers.length;
@@ -68,22 +85,13 @@ export default function Team() {
       <h2>Our Team</h2>
       <div className="slideshow-container" id="team" ref={containerRef}>
         {visible.map(member => {
-          const translateX = member.pos * (CARD_WIDTH + GAP) * SPREAD;
-          const scale = 1 - Math.abs(member.pos) * 0.12;
-          const opacity = 1 - Math.abs(member.pos) * 0.2;
-          const zIndex = 5 - Math.abs(member.pos);
-          const isCenter = member.actualIdx === centerIdx;
+          const posClass = `pos${member.pos}`; // pos-2, pos-1, pos0, pos1, pos2
           const isClicked = member.actualIdx === clickedIdx;
 
           return (
             <div
-              key={member.name}
-              className={`slideshow-card${isCenter ? " pos0" : ""}${isCenter && isClicked ? " clicked" : ""}`}
-              style={{
-                transform: `translateX(${translateX}px) scale(${scale})`,
-                opacity,
-                zIndex,
-              }}
+              key={member.actualIdx}
+              className={`slideshow-card ${posClass} ${isClicked ? "clicked" : ""}`}
               onClick={() => {
                 setCenterIdx(member.actualIdx);
                 setManualPause(true);
@@ -94,15 +102,15 @@ export default function Team() {
               <h3>{member.name}</h3>
               <p>{member.role}</p>
               <div className="icon-container" onClick={e => e.stopPropagation()}>
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="linkedin-icon"
-                  >
-                    <FaLinkedin />
-                  </a>
-                </div>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-icon"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
             </div>
           );
         })}

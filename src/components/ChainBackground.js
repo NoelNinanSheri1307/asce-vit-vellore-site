@@ -6,6 +6,7 @@ const ChainBackground = ({ particleId = "tsparticles" }) => {
   const particlesInit = async (engine) => {
     await loadSlim(engine);
   };
+const particleCount = window.innerWidth <= 768 ? 0 : 20;
 
   return (
     <Particles
@@ -15,7 +16,7 @@ const ChainBackground = ({ particleId = "tsparticles" }) => {
         fullScreen: { enable: false },
         background: { color: "transparent" },
           particles: {
-          number: { value: 20 },
+          number: { value: particleCount},
           color: { value: "#00bfff" },
           links: {
             enable: true,
