@@ -36,8 +36,12 @@ export default function Team() {
   const [centerIdx, setCenterIdx] = useState(0);
   const [manualPause, setManualPause] = useState(false);
   const [clickedIdx, setClickedIdx] = useState(null);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
   const containerRef = useRef(null);
 
+  // auto-scroll
   useEffect(() => {
     if (manualPause) return;
     const id = setInterval(() => {
@@ -46,6 +50,7 @@ export default function Team() {
     return () => clearInterval(id);
   }, [manualPause]);
 
+  // detect outside clicks
   useEffect(() => {
     const handleOutsideClick = e => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
@@ -53,12 +58,11 @@ export default function Team() {
         setClickedIdx(null);
       }
     };
-
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
 
-  // set CSS variables on container so media queries still work
+  // set CSS variables
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -66,14 +70,10 @@ export default function Team() {
     el.style.setProperty("--card-height", `${CARD_HEIGHT}px`);
     el.style.setProperty("--gap-x", `${GAP}px`);
     el.style.setProperty("--spread", `${SPREAD}`);
-    // computed slide-distance used by CSS: (card + gap) * spread
-    el.style.setProperty(
-      "--slide-distance",
-      `${(CARD_WIDTH + GAP) * SPREAD}px`
-    );
+    el.style.setProperty("--slide-distance", `${(CARD_WIDTH + GAP) * SPREAD}px`);
   }, []);
 
-  // compute visible set (same as before)
+  // compute visible cards
   const visible = [];
   for (let offset = -2; offset <= 2; offset++) {
     const idx = (centerIdx + offset + teamMembers.length) % teamMembers.length;
@@ -83,9 +83,32 @@ export default function Team() {
   return (
     <section className="team-section">
       <h2>Our Team</h2>
-      <div className="slideshow-container" id="team" ref={containerRef}>
+      <div
+        className="slideshow-container"
+        id="team"
+        ref={containerRef}
+        onTouchStart={e => setTouchStartX(e.touches[0].clientX)}
+        onTouchMove={e => setTouchEndX(e.touches[0].clientX)}
+        onTouchEnd={() => {
+          if (touchStartX === null || touchEndX === null) return;
+
+          const delta = touchStartX - touchEndX;
+
+          if (Math.abs(delta) > 50) {
+            setManualPause(true);
+            if (delta > 0) {
+              setCenterIdx(i => (i + 1) % teamMembers.length); // swipe left → next
+            } else {
+              setCenterIdx(i => (i - 1 + teamMembers.length) % teamMembers.length); // swipe right → prev
+            }
+          }
+
+          setTouchStartX(null);
+          setTouchEndX(null);
+        }}
+      >
         {visible.map(member => {
-          const posClass = `pos${member.pos}`; // pos-2, pos-1, pos0, pos1, pos2
+          const posClass = `pos${member.pos}`;
           const isClicked = member.actualIdx === clickedIdx;
 
           return (

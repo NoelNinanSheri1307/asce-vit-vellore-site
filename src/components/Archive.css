@@ -126,7 +126,7 @@ Arpit's CSS:    */
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  max-height: 210px; /* only image (150px) + title (≈60px) */
+  max-height: 220px; /* only image (150px) + title (≈60px) */
   transition: max-height 0.6s ease-in-out, box-shadow 0.3s ease;
   border: 2px solid transparent;
   display: flex;
@@ -305,6 +305,7 @@ h4 {
    .archive-event-card {
     width: 90%;
     max-width: 350px;
+    max-height: 290px;
   }
 
   .archive-event-card.archive-expanded {

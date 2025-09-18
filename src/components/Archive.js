@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import "./Archive.css";
 import event1Img from "../imagesandassets/event1.png";
@@ -376,32 +376,54 @@ const archiveData = [
 
 const ArchiveEventCard = ({ event }) => {
   const [expanded, setExpanded] = useState(false);
+  const cardRef = useRef(null);
 
   const toggleExpanded = (e) => {
     e.stopPropagation();
     setExpanded((prev) => !prev);
   };
 
+  // Close when clicking/tapping outside the card (only while expanded)
+  useEffect(() => {
+    if (!expanded) return;
+
+    const handleOutside = (e) => {
+      if (cardRef.current && !cardRef.current.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [expanded]);
+
   return (
     <div
+      ref={cardRef}
       className={`archive-event-card ${expanded ? "archive-expanded" : ""}`}
       onClick={toggleExpanded}
-    > {event.imageUrl &&(
-    <img
-      src={event.imageUrl}
-      alt={event.title}
-      className="archive-event-image"
-      loading="lazy"
-    />
-  )}
+    >
+      {event.imageUrl && (
+        <img
+          src={event.imageUrl}
+          alt={event.title}
+          className="archive-event-image"
+          loading="lazy"
+        />
+      )}
       <h5 className="archive-event-title">{event.title}</h5>
-      
+
       <div className="archive-event-meta">
         <p><span className="meta-label">DATE:</span> {event.date}</p>
         <p><span className="meta-label">TIME:</span> {event.time}</p>
         <p><span className="meta-label">LOCATION:</span> {event.location}</p>
       </div>
-       
+
       <p className="archive-event-description">{event.description}</p>
 
       {event.quote && (
@@ -409,7 +431,6 @@ const ArchiveEventCard = ({ event }) => {
       )}
 
       <div className="archive-highlights">
-        
         <p className="archive-highlight-title">KEY FEATURES:</p>
         <ul>
           {event.highlights.map((hl, j) => (
@@ -422,6 +443,7 @@ const ArchiveEventCard = ({ event }) => {
     </div>
   );
 };
+
 
 const Archive = () => (
   <motion.section

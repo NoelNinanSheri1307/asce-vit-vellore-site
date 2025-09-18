@@ -19,6 +19,8 @@ import ChainBackground from "./components/ChainBackground";
 import VideoSplashScreen from "./components/Videosplash";
 import RegisterForm from "./components/registerform";
 
+const isMobile = window.innerWidth <= 768;
+
 function App() {
   // show splash only if it hasn't been played this session
   const [showSplash, setShowSplash] = useState(() => {
@@ -29,7 +31,22 @@ function App() {
   const handleSplashFinish = () => {
     sessionStorage.setItem("splashPlayed", "true");
     setShowSplash(false);
-  };
+  }; 
+  /* const [showSplash, setShowSplash] = useState(true);
+
+const handleSplashFinish = () => {
+  setShowSplash(false);
+};   and 
+const [showSplash, setShowSplash] = useState(() => {
+  return !sessionStorage.getItem("splashPlayed");
+});
+
+const handleSplashFinish = () => {
+  sessionStorage.setItem("splashPlayed", "true");
+  setShowSplash(false);
+};
+
+*/
 
   const MainWebsite = () => (
     <>
@@ -53,17 +70,18 @@ function App() {
   );
 
   return (
-    <div className="App">
-      {showSplash ? (
-        <VideoSplashScreen onFinish={handleSplashFinish} />
-      ) : (
-        <Routes>
-          <Route path="/" element={<MainWebsite />} />
-          <Route path="/registerform" element={<RegisterForm />} />
-        </Routes>
-      )}
-    </div>
-  );
+  <div className="App">
+    {showSplash && !isMobile ? (  // splash only if not mobile
+      <VideoSplashScreen onFinish={handleSplashFinish} />
+    ) : (
+      <Routes>
+        <Route path="/" element={<MainWebsite />} />
+        <Route path="/registerform" element={<RegisterForm />} />
+      </Routes>
+    )}
+  </div>
+);
+
 }
 
 export default App;
