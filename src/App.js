@@ -57,7 +57,7 @@ const handleSplashFinish = () => {
         <InternalEvents />
         <ExternalEvents />
         <Achievements />
-        
+        <Sponsors />
         <AboutUs />
         <Patron />
         <Team />

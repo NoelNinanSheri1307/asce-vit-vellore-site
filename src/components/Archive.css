@@ -293,7 +293,7 @@ h4 {
   position: absolute;
   left: 0;
 }
- @media (max-width: 600px) {
+ @media (max-width: 768px) {
   .archive-events {
     display: flex;
     flex-wrap: wrap;
@@ -305,11 +305,12 @@ h4 {
    .archive-event-card {
     width: 90%;
     max-width: 350px;
-    max-height: 290px;
+    max-height: fit-content;
   }
 
   .archive-event-card.archive-expanded {
     width: 90%;
+    max-height:fit-content;
   }
 
 }

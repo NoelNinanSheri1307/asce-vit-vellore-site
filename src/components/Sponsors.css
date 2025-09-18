@@ -1,113 +1,157 @@
 .sponsors-section {
-  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 120px 40px;
   color: white;
+  background-color: transparent;
   text-align: center;
+  position: relative;
+  overflow: hidden;
   z-index: 1;
 }
 
 .sponsors-section h2 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 40px;
+  color: #fff;
 }
 
-/* Outer box with fading edges */
-.slider-box {
-  position: relative;
+/* Expandable Sponsor Card */
+.sponsor-card {
+  background-color: rgba(10, 10, 10, 0.7);
+  border-radius: 12px;
+  width: 380px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;   /* stack content vertically */
+  align-items: center;      /* center everything */
+  text-align: center;       /* fix misaligned text */
   overflow: hidden;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px 0;
+  cursor: pointer;
+  transition: max-height 0.6s ease, border 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
-/* Fading effect edges */
-.slider-fade {
+/* Cyan shimmer hover */
+.sponsor-card:hover::before {
+  content: '';
   position: absolute;
   top: 0;
-  width: 80px;
+  left: -100%;
   height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 191, 255, 0.3) 50%,
+    transparent 100%
+  );
   z-index: 2;
   pointer-events: none;
+  animation: shimmer 1.5s forwards;
 }
 
-.left-fade {
-  left: 0;
-  background: linear-gradient(to right, #0a0a0a 0%, transparent 100%);
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
-.right-fade {
-  right: 0;
-  background: linear-gradient(to left, #0a0a0a 0%, transparent 100%);
-}
-
-/* Scrolling area */
-.sponsor-slider {
-  display: flex;
-  gap: 50px;
-  animation: scroll-loop 20s linear infinite;
-  width:max-content;
-}
-
-.slider-box:hover .sponsor-slider {
-  animation-play-state: paused;
-}
-.sponsor-slider-wrapper {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-/* Sponsor logo as rounded square */
-.sponsor-logo {
-  flex: 0 0 auto;
-  min-width: 80px;
-  min-height: 80px;
-  padding: 10px;
-  margin: 0 25px;
-  border-radius: 20px;
-  border: 3px solid transparent;
-  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-}
-
-.sponsor-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 20px;
-}
-
-/* Hover stops animation */
-.sponsor-slider-wrapper:hover .sponsor-slider {
-  animation-play-state: paused;
-}
-/* Hover effect */
-.sponsor-logo:hover {
+.sponsor-card:hover {
   border-color: #00bfff;
-  box-shadow: 0 0 15px #00bfff;
-  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
 }
 
-
-@keyframes scroll-loop {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+/* Logo */
 .logo-container {
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.logo-container img {
+  width: 160px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
 .sponsor-name {
-  margin-top: 8px;
-  font-size: 1.3rem;
-  color: #ccc;
+  font-size: 1.4rem;
+  font-weight: 500;
   text-align: center;
+}
+
+/* Expandable details */
+.sponsor-details {
+  padding: 1.25rem 1.75rem 2rem;
+  font-size: 1rem;            /* slightly bigger for readability */
+  line-height: 1.8;           /* more breathing space */
+  width: 100%;
+  max-width: 90%;             /* don't let text span edge to edge */
+  margin: 0 auto;             /* center the text block */
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+.sponsor-details p {
+  margin-bottom: 1.2rem;
+  color: #ddd;          /* softer than pure white */
+}
+
+/* Link Button */
+.sponsor-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00bfff;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sponsor-link:hover {
+  background: #008fcc;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .sponsor-card {
+    width: 90%;
+    max-width: 350px;
+    max-height: fit-content;
+    border-color: transparent !important; /* kill hover border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* reset static shadow */
+  }
+
+  /* remove shimmer + hover glow */
+  .sponsor-card:hover,
+  .sponsor-card:hover::before {
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    animation: none;
+    content: none;
+  }
+
+  .sponsor-details {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;         /* ✅ cleaner reading on narrow screens */
+    max-width: 100%;
+    padding: 1rem 1.2rem 1.5rem;
+  }
+
+  .sponsors-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .sponsor-name {
+    font-size: 1.2rem;
+  }
 }
