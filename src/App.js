@@ -40,7 +40,7 @@ function App() {
         <InternalEvents />
         <ExternalEvents />
         <Achievements />
-       
+        
         <AboutUs />
         <Patron />
         <Team />

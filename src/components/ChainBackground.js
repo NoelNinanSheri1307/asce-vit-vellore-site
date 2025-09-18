@@ -6,7 +6,7 @@ const ChainBackground = ({ particleId = "tsparticles" }) => {
   const particlesInit = async (engine) => {
     await loadSlim(engine);
   };
-const particleCount = window.innerWidth <= 768 ? 0 : 20;
+const particleCount = window.innerWidth <= 768 ? 0 : 30;
 
   return (
     <Particles

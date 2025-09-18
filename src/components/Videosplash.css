@@ -26,6 +26,9 @@
 }
 @media (max-width: 768px) {
   .video-splash {
-    display: none !important;
+    display: flex; /* Ensures the video splash is visible */
+  }
+  .video-splash video {
+    object-fit: contain; /* Scales the video to fit the screen while maintaining its aspect ratio */
   }
 }
